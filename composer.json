@@ -1,24 +1,31 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "unknow-sk/laravel-nova",
+    "description": "This is my package laravel-nova",
     "keywords": [
-        ":vendor_name",
+        "unknow-sk",
         "laravel",
-        ":package_slug"
+        "laravel-nova"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/unknow-sk/laravel-nova",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Unknow.sk",
+            "email": "unknow@unknow.sk",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0"
+        "php": "^8.3",
+        "danharrin/livewire-rate-limiting": "^1.2",
+        "ebess/advanced-nova-media-library": "dev-master",
+        "illuminate/contracts": "^10.0",
+        "laravel/nova": "^4.0",
+        "livewire/livewire": "^3.3",
+        "spatie/laravel-csp": "^2.8",
+        "spatie/laravel-package-tools": "^1.16",
+        "statikbe/laravel-nova-chained-translation-manager": "^3.0",
+        "unknow-sk/laravel-core": "^1.0 | dev-main"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -28,26 +35,40 @@
         "pestphp/pest": "^2.20",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest-plugin-livewire": "^2.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "spatie/laravel-ray": "^1.26"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "../*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "UnknowSk\\Nova\\": "src/",
+            "UnknowSk\\Nova\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "UnknowSk\\Nova\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "clear": "@php vendor/bin/testbench package:purge-laravel-nova --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
             "@composer run prepare",
@@ -67,19 +88,37 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "UnknowSk\\Nova\\NovaServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Nova": "UnknowSk\\Nova\\Facades\\Nova"
             }
+        },
+        "branch-alias": {
+            "dev-main": "1.x-dev"
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "archive": {
+        "exclude": [
+            "/tests",
+            "/workbench",
+            ".github",
+            ".editorconfig",
+            ".gitattributes",
+            ".gitignore",
+            "pint.json",
+            "phpstan.neon.dist",
+            "phpstan-baseline.neon",
+            "phpunit.xml.dist"
+        ]
+    }
 }
