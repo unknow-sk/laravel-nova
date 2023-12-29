@@ -79,16 +79,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Nova::enableRTL(fn (Request $request) => $request->user()?->wantsRTL());
         }
 
-        if (!config('nova.settings.enable_global_search')) {
+        if (! config('nova.settings.enable_global_search')) {
             Nova::withoutGlobalSearch();
         }
 
-        if (!config('nova.settings.enable_theme_switcher')) {
+        if (! config('nova.settings.enable_theme_switcher')) {
             Nova::withoutThemeSwitcher();
         }
 
         Nova::report(function ($exception) {
-            foreach ((array)config('nova.settings.enable_theme_switcher', []) as $handler) {
+            foreach ((array) config('nova.settings.enable_theme_switcher', []) as $handler) {
                 if (app()->bound($handler)) {
                     app($handler)->captureException($exception);
                 }
@@ -102,7 +102,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ];
 
                 foreach ($menus as $key => $item) {
-                    if (!($item instanceof MenuItem) && !($item instanceof MenuSection)) {
+                    if (! ($item instanceof MenuItem) && ! ($item instanceof MenuSection)) {
                         if (is_array($item)) {
                             $item = $this->menuItemFromArray($item);
                         } elseif (is_string($item) && class_exists($item)) {
@@ -120,7 +120,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         if ($menus = config('nova.menu.user', [])) {
             Nova::userMenu(function (Request $request, Menu $menu) use ($menus) {
                 foreach ($menus as $key => $item) {
-                    if (!($item instanceof MenuItem) && !($item instanceof MenuSection)) {
+                    if (! ($item instanceof MenuItem) && ! ($item instanceof MenuSection)) {
                         if (is_array($item)) {
                             $item = $this->menuItemFromArray($item);
                         } else {

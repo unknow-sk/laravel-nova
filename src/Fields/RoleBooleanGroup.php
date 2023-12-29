@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasPermissions;
 
 class RoleBooleanGroup extends BooleanGroup
 {
-    public function __construct($name, $attribute = null, callable $resolveCallback = null, $labelAttribute = null)
+    public function __construct($name, $attribute = null, ?callable $resolveCallback = null, $labelAttribute = null)
     {
         parent::__construct(
             $name,
@@ -34,10 +34,9 @@ class RoleBooleanGroup extends BooleanGroup
     }
 
     /**
-     * @param NovaRequest $request
-     * @param string $requestAttribute
-     * @param HasPermissions $model
-     * @param string $attribute
+     * @param  string  $requestAttribute
+     * @param  HasPermissions  $model
+     * @param  string  $attribute
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {

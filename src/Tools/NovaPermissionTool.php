@@ -4,7 +4,6 @@ namespace UnknowSk\Nova\Tools;
 
 use Gate;
 use Illuminate\Http\Request;
-use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 use UnknowSk\Nova\Resources\Permission;
@@ -14,10 +13,13 @@ use UnknowSk\Nova\Resources\User;
 class NovaPermissionTool extends Tool
 {
     public string $userResource = User::class;
+
     public string $roleResource = Role::class;
+
     public string $permissionResource = Permission::class;
 
     public string $rolePolicy = RolePolicy::class;
+
     public string $permissionPolicy = PermissionPolicy::class;
 
     /**
@@ -40,7 +42,6 @@ class NovaPermissionTool extends Tool
     /**
      * Build the menu that renders the navigation links for the tool.
      *
-     * @param  \Illuminate\Http\Request $request
      * @return mixed
      */
     public function menu(Request $request)
@@ -75,5 +76,4 @@ class NovaPermissionTool extends Tool
 
         return $this;
     }
-
 }
